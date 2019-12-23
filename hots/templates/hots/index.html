@@ -1,0 +1,35 @@
+{% extends 'hots/base.html' %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        {% if all_hots %}
+            {% for hots in all_hots %}
+                <div class="col-sm-4 col-lg-4">
+                    <div class="thumbnail" style="background-color:#080808b0; color:#e1d3c1">
+                        <a href="{% url 'hots:detail' hots.id %}">
+                            <img src="{{ hots.hots_image.url }}" class="img-responsive">
+                        </a>
+                        <div class="caption" style="background-color:#080808b0; color:#e1d3c1">
+                            <h2>{{ hots.hots_title }}</h2>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'hots:index' %}">
+                    <button type="button" class="btn btn-success" style="background-color:#080808; border-color:#080808">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Hots
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

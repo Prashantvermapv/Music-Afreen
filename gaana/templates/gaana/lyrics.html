@@ -1,0 +1,18 @@
+{% extends 'gaana/base.html' %}
+{% block title %}All Songs{% endblock %}
+{% block songs_active %}active{% endblock %}
+{% block body %}
+<div class="container-fluid songs-container">
+<div class="row">
+  <div class="col-sm-8">
+
+                <div class="panel panel-default"style="background-color:#080808b0; color:#e1d3c1">
+                    <div class="panel-body">
+<h1> {{song.song_title}}</h1>
+<h3>{{ song.lyrics | linebreaksbr}}</h3>
+
+</div>
+</div>
+</div></div>
+</div>
+{% endblock %}

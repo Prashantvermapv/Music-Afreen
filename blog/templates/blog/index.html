@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% block title %}My Blog{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+<div class="w3-container w3-black" style="position:relative">
+
+ <h1 class="w3-jumbo w3-text-white" style="text-shadow:1px 1px 0 #444">My Blog</h1>
+</div>
+
+<div class=" w3-animate-zoom" style="padding:20px 50px;
+background-size:cover;">
+{% if all_blogs %}
+    {% for blog in all_blogs %}
+    <div class="albums-container container-fluid">
+
+        <!-- Albums -->
+        <div class="row">
+            <div class="col-sm-4 col-lg-4">
+              <div class="panel panel-default" style="background-color:#080808b0; color:#e1d3c1">
+                  <div class="panel-body">
+                      <a href="{% url 'blog:detail' blog.id %}">
+                          {% if blog.blog_image %}
+                              <img src="{{ blog.blog_image.url }}" class="img-responsive">
+                          {% else %}
+                              <h3>No image to display</h3>
+                          {% endif %}
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-8 col-md-8">
+              <div class="panel panel-default"style="background-color:#080808b0; color:#e1d3c1">
+                  <div class="panel-body" >
+                    <h1>{{ blog.blog_title}}</h1>
+                    <h3>{{ blog.post_date}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+    {% endfor %}
+{% else %}
+<div class="col-sm-12">
+    <br>
+    <a href="{% url 'blog:create_blog' %}">
+        <button type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp; Add Blog
+        </button>
+    </a>
+</div>
+{% endif %}
+
+
+</div>
+
+
+{% endblock %}
